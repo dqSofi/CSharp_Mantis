@@ -23,10 +23,9 @@ namespace Mantiss_Tests
         [Test]
         public void AccountRegistrationTest()
         {
-            AccountData account = new AccountData()
-            { Name = "testuser",
-            Password="pass",
-            Email= "testuser@localhost.locsldomain"
+            AccountData account = new AccountData("testuser", "pass")
+            {
+                Email = "testuser@localhost.locsldomain"
             };
 
             app.Registration.Register(account);

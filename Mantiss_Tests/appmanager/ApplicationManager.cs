@@ -17,7 +17,9 @@ namespace Mantiss_Tests
 
         public RegistrationHelper Registration { get; private set; }
         public FTPHelper FTP { get; private set; }
-        
+        public LogInOutHelper Auth { get; private set; }
+        public ProjectHelper Project { get; private set; }
+
         //устанавливает соответствие между текущим потоком и объектом типа апп менеджер
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
@@ -38,6 +40,8 @@ namespace Mantiss_Tests
             baseURL = "http://localhost";
             Registration = new RegistrationHelper(this);
             FTP = new FTPHelper(this);
+            Auth = new LogInOutHelper(this);
+            Project = new ProjectHelper(this);
         }
 
         //деструктор, всегда начинается с ~
