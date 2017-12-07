@@ -10,9 +10,6 @@ namespace Mantiss_Tests
     [Table(Name = "mantis_project_table")]
     public class ProjectData : IEquatable<ProjectData>, IComparable<ProjectData>
     {
-        [Column(Name = "id"), PrimaryKey, Identity]
-        public string ID { get; set; }
-
         [Column(Name = "name")]
         public string Name { get; set; }
 
