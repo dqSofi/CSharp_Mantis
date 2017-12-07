@@ -16,15 +16,15 @@ namespace Mantiss_Tests
         {
             ProjectData project = new ProjectData("project name");
 
-            //получить текущий список проектов
+            List<ProjectData> oldProjects = ProjectData.GetAllFromDB();
+
             app.Project.CreateNewProject(project);
 
-            //получить новый список проектов
-            //добавить в старый список новый проект
-            //отсортировать оба списка
-            //сравнить оба списка
-           
-
+            List<ProjectData> newProjects = ProjectData.GetAllFromDB();
+            oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
         }
     }
 }
