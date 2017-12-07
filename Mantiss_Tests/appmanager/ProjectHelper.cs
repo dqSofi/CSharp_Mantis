@@ -12,6 +12,13 @@ namespace Mantiss_Tests
     {
         public ProjectHelper(ApplicationManager manager) : base(manager) { }
 
+        public bool IsProjectExist()
+        {
+            OpenManage();
+            OpenManageProjects();
+            return IsElementPresent(By.XPath("//table/tbody/tr/td/a"));
+        }
+
         public void CreateNewProject(ProjectData project)
         {
             OpenManage();
@@ -23,9 +30,36 @@ namespace Mantiss_Tests
 
         private void OpenManage()
         {
-            driver.FindElement(By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
+            driver.FindElement(By.XPath("(//span[contains(text(),'Manage')])")).Click();
+            //By.XPath("//div[@id='sidebar']/ul/li[7]/a/i")).Click();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
                 .Until(d => driver.FindElements(By.LinkText("Manage Projects")).Count > 0);
+        }
+
+        public void Remove(ProjectData toBeRemoved)
+        {
+            OpenManage();
+            OpenManageProjects();
+            SelectProject(toBeRemoved.Name);
+            ClickDeleteProjectButton();
+            ConfirmDeleteProject();
+        }
+
+        private void ConfirmDeleteProject()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+        }
+
+        private void ClickDeleteProjectButton()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete Project']")).Click();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => driver.FindElements(By.XPath("(//p[contains(text(),'Are you sure you want to delete this project')])")).Count > 0);
+        }
+
+        private void SelectProject(string name)
+        {
+            driver.FindElement(By.XPath("(//a[contains(text(),'"+ name + "')])")).Click();
         }
 
         private void OpenManageProjects()

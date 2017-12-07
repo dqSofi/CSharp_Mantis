@@ -5,9 +5,6 @@ using NUnit.Framework;
 
 namespace Mantiss_Tests
 {
-    /// <summary>
-    /// Сводное описание для NewProjectCreationTest
-    /// </summary>
     [TestFixture]
     public class NewProjectCreationTests : AuthTestBase
     {
@@ -26,7 +23,6 @@ namespace Mantiss_Tests
                 }
                 }
             app.Project.CreateNewProject(project);
-
             List<ProjectData> newProjects = ProjectData.GetAllFromDB();
             oldProjects.Add(project);
             oldProjects.Sort();

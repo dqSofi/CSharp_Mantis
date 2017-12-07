@@ -80,6 +80,7 @@
     <Compile Include="model\AccountData.cs" />
     <Compile Include="tests\AuthTestBase.cs" />
     <Compile Include="tests\NewProjectCreationTests.cs" />
+    <Compile Include="tests\ProjectRemoveTests.cs" />
     <Compile Include="tests\TestBase.cs" />
   </ItemGroup>
   <ItemGroup>
