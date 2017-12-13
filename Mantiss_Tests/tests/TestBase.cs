@@ -20,7 +20,7 @@ namespace Mantiss_Tests
             //так как неизвестно в каком порядке будут проходить тесты
             //обязательный переход есть только при инициализации ApplicationManager
             //при логаут/логин возврат на старую страницу (например groups)
-            app.Driver.Url = "http://localhost/mantisbt-2.8.0/login_page.php";
+            app.Driver.Url = "http://localhost/mantisbt-2.9.0/login_page.php";
         }
 
         public static Random rnd = new Random();

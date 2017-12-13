@@ -9,7 +9,7 @@ namespace Mantiss_Tests
 {
     public class MantisDB : LinqToDB.Data.DataConnection
     {
-        public MantisDB() : base("root") { }
+        public MantisDB() : base("bugtracker") { }
 
         public ITable<ProjectData> Projects { get { return GetTable<ProjectData>(); } }
     }
