@@ -23,12 +23,20 @@ namespace Mantiss_Tests
         [Test]
         public void AccountRegistrationTest()
         {
+           
+
             AccountData account = new AccountData("testuser", "pass")
             {
                 Email = "testuser@localhost.locsldomain"
             };
 
-            app.Registration.Register(account);
+            List<AccountData> accounts = app.Auth.GetAllAccounts();
+            AccountData existingAccount = accounts.Find(x => x.Name == account.Name);
+            if (existingAccount != null)
+            {
+                app.Auth.DeleteAccount(existingAccount);
+            }
+            app.Registration.Register(existingAccount);
         }
 
         [TearDown]

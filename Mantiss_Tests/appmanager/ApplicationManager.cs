@@ -19,6 +19,7 @@ namespace Mantiss_Tests
         public FTPHelper FTP { get; private set; }
         public LogInOutHelper Auth { get; private set; }
         public ProjectHelper Project { get; private set; }
+        
 
         //устанавливает соответствие между текущим потоком и объектом типа апп менеджер
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
@@ -37,10 +38,10 @@ namespace Mantiss_Tests
             options.BrowserExecutableLocation = @"C:\Program Files\Mozilla Firefox\firefox.exe";
             options.UseLegacyImplementation = true;
             driver = new FirefoxDriver(options);
-            baseURL = "http://localhost";
+            baseURL = "http://localhost/mantisbt-2.9.0";
             Registration = new RegistrationHelper(this);
             FTP = new FTPHelper(this);
-            Auth = new LogInOutHelper(this);
+            Auth = new LogInOutHelper(this, baseURL);
             Project = new ProjectHelper(this);
         }
 
@@ -63,7 +64,7 @@ namespace Mantiss_Tests
             if (! app.IsValueCreated) 
             {
                 ApplicationManager NewInstance = new ApplicationManager();
-                NewInstance.driver.Url = "http://localhost/mantisbt-2.9.0/login_page.php";
+                NewInstance.driver.Url = NewInstance.baseURL + "/login_page.php";
                 app.Value = NewInstance;
                                 
             }
