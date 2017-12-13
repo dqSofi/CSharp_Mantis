@@ -13,16 +13,16 @@ namespace Mantiss_Tests
         public void AddNewIssue()
         {
             AccountData account = new AccountData("administrator", "admin");
-            IssueData issue = new IssueData()
+            IssueData issueData = new IssueData()
             {
-                Summary = "some text",
-                Description = "Some long text",
+                Summary = "Summary",
+                Description = "Description",
                 Category = "General"
             };
             ProjectData project = new ProjectData() {
-                ID = "1"
+                ID = "3"
             };
-            app.API.CreateNewIssue(account,project,issue);
+            app.API.CreateNewIssue(account, project,issueData);
 
         }
     }

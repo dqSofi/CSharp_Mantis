@@ -15,19 +15,19 @@ namespace Mantiss_Tests
     {
         public APIHelper(ApplicationManager manager) : base(manager) { }
 
-        public void CreateNewIssue(AccountData account,ProjectData project, IssueData issue)
+        public void CreateNewIssue(AccountData account, ProjectData project, IssueData issueData)
         {
-            Mantiss.MantisConnectPortTypeClient client =
-            new Mantiss.MantisConnectPortTypeClient();
-            Mantiss.IssueData issueM = new Mantiss.IssueData();
-            issueM.summary = issue.Summary;
-            issueM.description = issue.Description;
-            issueM.category = issue.Category;
-            issueM.project = new Mantiss.ObjectRef();
-            issueM.project.id = project.ID;
-            client.mc_issue_add(account.Name, account.Password, issueM);
+            Mantiss.MantisConnectPortTypeClient client 
+                = new Mantiss.MantisConnectPortTypeClient();
+            Mantiss.IssueData issue = new Mantiss.IssueData();
+            issue.category = issueData.Category;
+            issue.summary = issueData.Summary;
+            issue.description = issueData.Description;
+            issue.project = new Mantiss.ObjectRef();
+            issue.project.id = project.ID;
+            client.mc_issue_add(account.Name, account.Password, issue);
         }
-
+        /*
         public List<ProjectData> GetProjectsList(AccountData account)
         {
             Mantiss.MantisConnectPortTypeClient client =
@@ -46,7 +46,7 @@ namespace Mantiss_Tests
             return projects;
         }
 
-
+    */
 
     }
 }

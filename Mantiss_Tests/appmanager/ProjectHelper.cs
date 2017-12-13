@@ -59,7 +59,7 @@ namespace Mantiss_Tests
 
         private void SelectProject(string name)
         {
-            driver.FindElement(By.XPath("(//a[contains(text(),'"+ name + "')])")).Click();
+            driver.FindElement(By.XPath("//a[.='"+name+"']")).Click();
         }
 
         private void OpenManageProjects()
