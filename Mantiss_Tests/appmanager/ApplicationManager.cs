@@ -19,7 +19,8 @@ namespace Mantiss_Tests
         public FTPHelper FTP { get; private set; }
         public LogInOutHelper Auth { get; private set; }
         public ProjectHelper Project { get; private set; }
-        
+        public APIHelper API { get; private set; }
+
 
         //устанавливает соответствие между текущим потоком и объектом типа апп менеджер
         private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
@@ -43,6 +44,8 @@ namespace Mantiss_Tests
             FTP = new FTPHelper(this);
             Auth = new LogInOutHelper(this, baseURL);
             Project = new ProjectHelper(this);
+            API = new APIHelper(this);
+
         }
 
         //деструктор, всегда начинается с ~

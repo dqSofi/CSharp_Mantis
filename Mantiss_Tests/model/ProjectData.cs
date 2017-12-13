@@ -13,10 +13,8 @@ namespace Mantiss_Tests
         [Column(Name = "name")]
         public string Name { get; set; }
 
-        public ProjectData()
-        {
-
-        }
+        public string ID { get; set; }
+        public ProjectData() { }
 
         public ProjectData(string name)
         {
