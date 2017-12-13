@@ -25,5 +25,29 @@ namespace Mantiss_Tests
             app.API.CreateNewIssue(account, project,issueData);
 
         }
+
+        [Test]
+        public void API_AddProject()
+        {
+            AccountData account = new AccountData("administrator", "admin");
+            List<ProjectData> oldProjects = app.API.GetProjectsList(account);
+            //проверка на существоание проекта с таким именем, в случае совпадения имен
+            //добавляется рандомные символы в конец названия
+            ProjectData project = new ProjectData("newP");
+            for (int i = 0; i < oldProjects.Count; i++)
+                        {
+                            if (project.Name == oldProjects[i].Name)
+                            {
+                                project.Name = project.Name + GenerateRandomString(2);
+                            }
+                        };
+            System.Console.Out.WriteLine(project.Name);
+            app.API.AddProject(account, project);
+            List<ProjectData> newProjects = app.API.GetProjectsList(account);
+            oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+        }
     }
 }
