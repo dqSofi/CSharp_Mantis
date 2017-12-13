@@ -19,8 +19,6 @@ namespace Mantiss_Tests
         {
             Mantiss.MantisConnectPortTypeClient client =
             new Mantiss.MantisConnectPortTypeClient();
-                //Mantiss.MantisConnectPortTypeClient client =
-                //new Mantiss.MantisConnectPortTypeClient();
             Mantiss.IssueData issueM = new Mantiss.IssueData();
             issueM.summary = issue.Summary;
             issueM.description = issue.Description;
@@ -29,5 +27,26 @@ namespace Mantiss_Tests
             issueM.project.id = project.ID;
             client.mc_issue_add(account.Name, account.Password, issueM);
         }
+
+        public List<ProjectData> GetProjectsList(AccountData account)
+        {
+            Mantiss.MantisConnectPortTypeClient client =
+            new Mantiss.MantisConnectPortTypeClient();
+            Mantiss.ProjectData[] projectsM =  client.mc_projects_get_user_accessible(account.Name, account.Password);
+            List<ProjectData> projects = new List<ProjectData>();
+
+            foreach (Mantiss.ProjectData p in projectsM)
+            {
+                projects.Add(new ProjectData()
+                {
+                    Name = p.name,
+                    ID = p.id
+                });
+            }
+            return projects;
+        }
+
+
+
     }
 }
