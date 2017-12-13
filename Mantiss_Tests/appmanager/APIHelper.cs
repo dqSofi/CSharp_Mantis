@@ -54,5 +54,14 @@ namespace Mantiss_Tests
             projectM.name = project.Name;
             client.mc_project_add(account.Name, account.Password, projectM);
         }
+
+        internal void DeleteProject(AccountData account, ProjectData project)
+        {
+            Mantiss.MantisConnectPortTypeClient client =
+                new Mantiss.MantisConnectPortTypeClient();
+            Mantiss.ProjectData projectM = new Mantiss.ProjectData();
+            projectM.id = project.ID;
+            client.mc_project_delete(account.Name, account.Password, projectM.id);
+        }
     }
 }

@@ -41,10 +41,30 @@ namespace Mantiss_Tests
                                 project.Name = project.Name + GenerateRandomString(2);
                             }
                         };
-            System.Console.Out.WriteLine(project.Name);
+            System.Console.Out.WriteLine("Added project = " + project.Name);
             app.API.AddProject(account, project);
             List<ProjectData> newProjects = app.API.GetProjectsList(account);
             oldProjects.Add(project);
+            oldProjects.Sort();
+            newProjects.Sort();
+            Assert.AreEqual(oldProjects, newProjects);
+        }
+
+        [Test]
+        public void API_DeleteProject()
+        {
+            AccountData account = new AccountData("administrator", "admin");
+            List<ProjectData> oldProjects = app.API.GetProjectsList(account);
+            if (oldProjects == null)
+            {
+                app.API.AddProject(account, new ProjectData() { Name= "ImGonnaBeDeletedSoon" } );
+            }
+            oldProjects = app.API.GetProjectsList(account);
+            ProjectData toBeRemoved = oldProjects[0];
+            System.Console.Out.WriteLine("Deleted project = " + toBeRemoved.Name);
+            app.API.DeleteProject(account, toBeRemoved);
+            List<ProjectData> newProjects = app.API.GetProjectsList(account);
+            oldProjects.RemoveAt(0);
             oldProjects.Sort();
             newProjects.Sort();
             Assert.AreEqual(oldProjects, newProjects);
